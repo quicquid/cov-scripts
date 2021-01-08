@@ -20,7 +20,7 @@ let parse_point str =
       Point.point year week
     )
 
-let lines = Csv.load "OGD_gest_kalwo_GEST_KALWOCHE_100.csv"
+let lines = Csv.load ~separator:';' "OGD_gest_kalwo_GEST_KALWOCHE_100.csv"
 
 let parsed = lines |> CCList.map (function
     | pt::_::_::_::deaths::_ ->
