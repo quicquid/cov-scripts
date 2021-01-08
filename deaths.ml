@@ -74,9 +74,11 @@ let plot gp =
     CCList.map (fun y ->
         let scaled = (y-2000)*10 in
         let (style, color) = match y with
-          | 2020 -> (Gp.Series.lines_xy, `Rgb (200,30,50))
+          | 2020 -> (Gp.Series.steps_xy ~weight:2, `Rgb (200,30,50))
           (*          | _ -> `Rgb (scaled*3/4, 220-scaled, scaled) *)
-          | _ -> (Gp.Series.points_xy, `Rgb (50,50,50))
+          | _ ->
+            let c = 200-(scaled*3/4) in
+            (Gp.Series.points_xy ~weight:0, `Rgb (c,c,c))
         in
         CCList.filter (function ({Point.year; _}, _) ->  y = year) by_months_list |>
         CCList.map (function ({Point.week; _}, deaths ) -> (float_of_int week, float_of_int deaths)) |>
