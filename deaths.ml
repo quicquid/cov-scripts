@@ -74,6 +74,7 @@ let plot gp =
     CCList.map (fun y ->
         let scaled = (y-2000)*10 in
         let (style, color) = match y with
+          | 2021 -> (Gp.Series.steps_xy ~weight:2, `Rgb (30,200,50))
           | 2020 -> (Gp.Series.steps_xy ~weight:2, `Rgb (200,30,50))
           (*          | _ -> `Rgb (scaled*3/4, 220-scaled, scaled) *)
           | _ ->
