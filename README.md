@@ -2,9 +2,9 @@ Some evaluation scripts regarding COVID
 ===========
 
 * deaths.ml: each point corresponds to the deaths (y-axis) in the week (x-axis) of a particular year.
-  We have data from 2000 to 2020, so there are 21 dots for each week. The dots for 2020 have been coloured red and
-  are connected by lines to make them more visible. There are two areas where 2020 differs from the years before:
-  weeks 12-18 (March / April) and weeks 42-51 (October to December) (there is no official data for the last week of 2020 available yet).
+  The dots for 2020 have been coloured red and those for 2021 are coloured in red; the previous years have been marked in gray.
+  The dots are connected by lines to make them more visible. There are two areas where 2020 differs from the years before:
+  weeks 12-18 (March / April) and weeks 42-52 (October to December).
   
   ![graph of deaths per week per year](cov_woechentlich.png)
   
