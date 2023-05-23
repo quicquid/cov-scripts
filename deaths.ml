@@ -14,7 +14,7 @@ module IntSet = CCSet.Make(CCInt)
 
 let parse_point str =
   CCString.chop_prefix ~pre:"KALW-" str |>
-  CCOpt.map (fun x ->
+  CCOption.map (fun x ->
       let year = Str.string_before x 4|> int_of_string in
       let week = Str.string_after x 4|> int_of_string in
       Point.point year week
@@ -24,7 +24,7 @@ let lines = Csv.load ~separator:';' "OGD_gest_kalwo_GEST_KALWOCHE_100.csv"
 
 let parsed = lines |> CCList.map (function
     | pt::_::_::_::deaths::_ ->
-      parse_point pt |> CCOpt.map (fun x -> (x,int_of_string deaths))
+      parse_point pt |> CCOption.map (fun x -> (x,int_of_string deaths))
     | _ -> None
   )
 
@@ -74,6 +74,8 @@ let plot gp =
     CCList.map (fun y ->
         let scaled = (y-2000)*10 in
         let (style, color) = match y with
+          | 2023 -> (Gp.Series.steps_xy ~weight:2, `Rgb (50,50,150))
+          | 2022 -> (Gp.Series.steps_xy ~weight:2, `Rgb (200,30,150))
           | 2021 -> (Gp.Series.steps_xy ~weight:2, `Rgb (30,200,50))
           | 2020 -> (Gp.Series.steps_xy ~weight:2, `Rgb (200,30,50))
           (*          | _ -> `Rgb (scaled*3/4, 220-scaled, scaled) *)
